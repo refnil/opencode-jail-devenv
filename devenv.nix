@@ -51,14 +51,14 @@ in {
     enable = mkEnableOption "Enable opencode";
 
     addProjetPackages = mkOption {
-      type = types.boolean;
+      type = types.bool;
       default = true;
       example = false;
       description = "Add config.packages to programs.opencode.packages";
     };
 
     basePackages = mkOption {
-      type = types.listOf types.packages;
+      type = types.listOf types.package;
       default = with pkgs; [
         bashInteractive
         curl
@@ -117,7 +117,8 @@ in {
   };
   
 
-  config = mkIf cfg.enable {
+  config = 
+  let realConfig = mkIf cfg.enable {
       overlays = [
         (final: prev: {jail = inputs.jail-nix.lib.init prev;})
       ];
@@ -130,4 +131,10 @@ in {
         })
       ];
   };
+  testConfig = {
+  profiles.test-opencode.module = {
+    programs.opencode.enable = true;
+  };
+  };
+  in mkMerge [realConfig testConfig];
 }
