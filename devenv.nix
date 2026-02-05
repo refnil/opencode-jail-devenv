@@ -21,7 +21,6 @@ let
       unset SSL_CERT_FILE
       unset TMP
       unset TMPDIR
-      unset NIX_BUILD_TOP
       unset TEMP
       unset TEMPDIR
       unset XDG_DATA_DIRS
