@@ -10,7 +10,7 @@ let
   cfg = config.programs.opencode;
 
   packages =
-    cfg.basePackages ++ cfg.packages ++ (if cfg.addProjetPackages then config.packages else [ ]);
+    cfg.basePackages ++ cfg.packages ++ (if cfg.addProjectPackages then config.packages else [ ]);
 
   jail_env = pkgs.mkShell {
     inherit packages;
@@ -57,9 +57,9 @@ let
 in
 {
   options.programs.opencode = {
-    enable = mkEnableOption "Enable opencode";
+    enable = mkEnableOption "opencode";
 
-    addProjetPackages = mkOption {
+    addProjectPackages = mkOption {
       type = types.bool;
       default = true;
       example = false;
@@ -85,7 +85,7 @@ in
         gnutar
         diffutils
       ];
-      description = "Add basic pacakges (ex: curl, ripgrep) to programs.opencode.packages";
+      description = "Add basic packages (e.g., curl, ripgrep) to programs.opencode.packages";
     };
 
     packages = mkOption {
@@ -126,7 +126,7 @@ in
 
     jailCombinators = mkOption {
       default = [ ];
-      description = "Permissions to add for the project";
+      description = "Permissions to add to the project";
     };
   };
 

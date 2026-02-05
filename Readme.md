@@ -32,7 +32,7 @@ imports:
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `programs.opencode.enable` | bool | `false` | Enable the opencode module |
-| `programs.opencode.addProjetPackages` | bool | `true` | Include `config.packages` in the opencode environment |
+| `programs.opencode.addProjectPackages` | bool | `true` | Include `config.packages` in the opencode environment |
 | `programs.opencode.basePackages` | list | See below | Base packages available to the agent (curl, git, ripgrep, etc.) |
 | `programs.opencode.packages` | list | `[]` | Additional custom packages to add |
 | `programs.opencode.opencodePackage` | package | `pkgs.opencode` | The opencode package to use |
@@ -49,7 +49,7 @@ imports:
 # devenv.nix
 { pkgs, ... }: {
   # Standard Rust environment - this compiler is automatically included
-  # in the opencode jail through addProjetPackages = true
+  # in the opencode jail through addProjectPackages = true
   languages.rust.enable = true;
   languages.rust.channel = "stable";
 
